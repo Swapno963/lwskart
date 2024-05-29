@@ -1,8 +1,11 @@
 import ProductDescription from "@/components/product/ProductDescription";
 import ProductDetail from "@/components/product/ProductDetail";
 import RelatedProducts from "@/components/product/RelatedProducts";
+import { getProductById } from "@/database/queries";
 
-export default function page() {
+export default async function page({ params: { id } }) {
+  const product = await getProductById(id);
+  console.log("produc by id is :", product);
   return (
     <>
       <div class="container py-4 flex items-center gap-3">
@@ -17,9 +20,9 @@ export default function page() {
 
       {/*  */}
 
-      <ProductDetail />
-      <ProductDescription />
-      <RelatedProducts />
+      <ProductDetail product={product} />
+      <ProductDescription product={product} />
+      <RelatedProducts category_name={product?.category_name} />
     </>
   );
 }

@@ -41,7 +41,7 @@ export default async function NewArriaival() {
               </div>
             </div>
             <div className="pt-4 pb-3 px-4">
-              <a href="#">
+              <a href={`/product/${product?.id}`}>
                 <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                   {product?.title}
                 </h4>

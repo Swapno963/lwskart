@@ -1,40 +1,75 @@
-export default function ProductDetail() {
+"use client";
+import { discountedPrice } from "@/utils/data-util";
+import Image from "next/image";
+import { useState } from "react";
+
+export default function ProductDetail({ product }) {
+  const [bigImg, setBigImg] = useState(product?.img_url[0]);
   return (
-    <div className="container grid grid-cols-2 gap-6">
+    <div className="container grid grid-cols-2 gap-6 pb-[120px]">
       <div>
-        <img src="/products/product1.jpg" alt="product" className="w-full" />
-        <div className="grid grid-cols-5 gap-4 mt-4">
-          <img
-            src="/products/product2.jpg"
-            alt="product2"
-            className="w-full cursor-pointer border border-primary"
+        <Image
+          width={150}
+          height={100}
+          src={bigImg}
+          alt="Food image"
+          className="w-full h-full"
+        />
+        <div className="grid grid-cols-5 gap-4 m-4 ">
+          <Image
+            width={150}
+            height={100}
+            src={product?.img_url[0]}
+            alt="Food image"
+            className={`w-full cursor-pointer border p-4 ${
+              bigImg === product?.img_url[0]
+                ? "border-green-700"
+                : "border-primary"
+            }`}
+            onClick={() => setBigImg(product?.img_url[0])}
           />
-          <img
-            src="/products/product3.jpg"
-            alt="product2"
-            className="w-full cursor-pointer border"
+          <Image
+            width={150}
+            height={100}
+            src={product?.img_url[1]}
+            onClick={() => setBigImg(product?.img_url[1])}
+            alt="Food image"
+            className={`w-full cursor-pointer border p-4 ${
+              bigImg === product?.img_url[1]
+                ? "border-green-700"
+                : "border-primary"
+            }`}
           />
-          <img
-            src="/products/product4.jpg"
-            alt="product2"
-            className="w-full cursor-pointer border"
+          <Image
+            width={150}
+            height={100}
+            src={product?.img_url[2]}
+            onClick={() => setBigImg(product?.img_url[2])}
+            alt="Food image"
+            className={`w-full cursor-pointer border p-4 ${
+              bigImg === product?.img_url[2]
+                ? "border-green-700"
+                : "border-primary"
+            }`}
           />
-          <img
-            src="/products/product5.jpg"
-            alt="product2"
-            className="w-full cursor-pointer border"
-          />
-          <img
-            src="/products/product6.jpg"
-            alt="product2"
-            className="w-full cursor-pointer border"
+          <Image
+            width={150}
+            height={100}
+            src={product?.img_url[3]}
+            onClick={() => setBigImg(product?.img_url[3])}
+            alt="Food image"
+            className={`w-full cursor-pointer border p-4 ${
+              bigImg === product?.img_url[3]
+                ? "border-green-700"
+                : "border-primary"
+            }`}
           />
         </div>
       </div>
 
       <div>
         <h2 className="text-3xl font-medium uppercase mb-2">
-          Italian L Shape Sofa
+          {product?.title}
         </h2>
         <div className="flex items-center mb-4">
           <div className="flex gap-1 text-sm text-yellow-400">
@@ -54,37 +89,42 @@ export default function ProductDetail() {
               <i className="fa-solid fa-star"></i>
             </span>
           </div>
-          <div className="text-xs text-gray-500 ml-3">(150 Reviews)</div>
+          <div className="text-xs text-gray-500 ml-3">
+            ({product?.reviewCount} Reviews)
+          </div>
         </div>
         <div className="space-y-2">
           <p className="text-gray-800 font-semibold space-x-2">
             <span>Availability: </span>
-            <span className="text-green-600">In Stock</span>
+            {product?.inventory_count > 0 ? (
+              <span className="text-green-600">In Stock</span>
+            ) : (
+              <span className="text-red-600">Out Of Stock</span>
+            )}
           </p>
           <p className="space-x-2">
             <span className="text-gray-800 font-semibold">Brand: </span>
-            <span className="text-gray-600">Apex</span>
+            <span className="text-gray-600">{product?.brand}</span>
           </p>
           <p className="space-x-2">
             <span className="text-gray-800 font-semibold">Category: </span>
-            <span className="text-gray-600">Sofa</span>
+            <span className="text-gray-600">{product?.category_name}</span>
           </p>
           <p className="space-x-2">
             <span className="text-gray-800 font-semibold">SKU: </span>
-            <span className="text-gray-600">BE45VGRT</span>
+            <span className="text-gray-600">{product?.SKU}</span>
           </p>
         </div>
         <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-          <p className="text-xl text-primary font-semibold">$45.00</p>
-          <p className="text-base text-gray-400 line-through">$55.00</p>
+          <p className="text-xl text-primary font-semibold">
+            ${discountedPrice(product?.price, product?.discount)}
+          </p>
+          <p className="text-sm text-gray-400 line-through">
+            ${product?.price}
+          </p>
         </div>
 
-        <p className="mt-4 text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius eum
-          reprehenderit dolore vel mollitia optio consequatur hic asperiores
-          inventore suscipit, velit consequuntur, voluptate doloremque iure
-          necessitatibus adipisci magnam porro.
-        </p>
+        <p className="mt-4 text-gray-600">{product?.detail}</p>
 
         <div className="mt-4">
           <h3 className="text-sm text-gray-800 uppercase mb-1">Quantity</h3>

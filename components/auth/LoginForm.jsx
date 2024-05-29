@@ -1,9 +1,15 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { login } from "../actions";
 import SocialLogins from "./SocialLogins";
 
+// for tost
+// for tost
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function LoginForm() {
-  // const router = useRouter();
+  const router = useRouter();
   async function onSubmit(event) {
     event.preventDefault();
     try {
@@ -14,14 +20,16 @@ export default function LoginForm() {
       const response = await login({ email, password });
       // console.log(email, password);
       // console.log(formData);
-      // router.push("/account");
+      router.push("/");
       console.log("response from login:", response);
     } catch (error) {
+      toast.warn("Plese Register first!");
       console.log(error);
     }
   }
   return (
     <>
+      <ToastContainer />
       <div className="contain py-16">
         <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
           <h2 className="text-2xl uppercase font-medium mb-1">Login</h2>

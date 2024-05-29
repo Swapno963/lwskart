@@ -1,5 +1,5 @@
 import { userModel } from "@/models/user_models";
-import { dbConnect } from "@/service/mongo";
+import dbConnect from "@/service/mongo";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
@@ -10,7 +10,7 @@ export const POST = async (request) => {
   await dbConnect();
 
   const newUser = {
-    name
+    name,
     email,
     password,
   };

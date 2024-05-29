@@ -1,6 +1,5 @@
 import { auth } from "@/auth";
 import Signout from "./auth/Signout";
-import SingIn from "./auth/SingIn";
 export default async function Navbar() {
   const session = await auth();
   console.log("from navbar", session);
@@ -71,7 +70,8 @@ export default async function Navbar() {
               </div>
             </div>
           ) : (
-            <SingIn />
+            // <SingIn />
+            ""
           )}
         </div>
       </header>

@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { dbConnect } from "@/service/mongo";
+import dbConnect from "@/service/mongo";
 import { Inter } from "next/font/google";
 import "./globals.css";
 

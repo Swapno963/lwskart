@@ -15,3 +15,14 @@ export const replaceMongoIdInObject = (obj) => {
   const { _id, ...updatedObj } = { ...obj, id: obj._id.toString() };
   return updatedObj;
 };
+
+export const discountedPrice = (originalPrice, discountPercentage) => {
+  // Calculate the discounted amount
+  const discountAmount = (originalPrice * discountPercentage) / 100;
+
+  // Calculate the discounted price
+  const discountedPrice = originalPrice - discountAmount;
+
+  // Return the discounted price
+  return discountedPrice;
+};

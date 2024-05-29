@@ -1,19 +1,15 @@
 import mongoose, { Schema } from "mongoose";
 
 const schema = new Schema({
-  name: {
+  category_name: {
     required: false,
     type: String,
   },
-  password: {
-    required: false,
-    type: String,
-  },
-  email: {
+  img_url: {
     required: false,
     type: String,
   },
 });
 
-export const userModel =
-  mongoose.models?.users ?? mongoose.model("users", schema);
+export const categoryModel =
+  mongoose.models?.category ?? mongoose.model("category", schema);

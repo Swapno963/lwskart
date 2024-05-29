@@ -1,9 +1,11 @@
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
+
 import { userModel } from "./models/user_models";
-import { dbConnect } from "./service/mongo";
+import dbConnect from "./service/mongo";
 import mongoClientPromise from "./service/mongoClinetPromise";
 
 export const {
@@ -49,6 +51,10 @@ export const {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    FacebookProvider({
+      clientId: process.env.FB_APP_ID,
+      clientSecret: process.env.FB_APP_SECRET,
     }),
   ],
 });

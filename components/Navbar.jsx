@@ -1,10 +1,15 @@
-export default function Navbar() {
+import { auth } from "@/auth";
+import Signout from "./auth/Signout";
+import SingIn from "./auth/SingIn";
+export default async function Navbar() {
+  const session = await auth();
+  console.log("from navbar", session);
   return (
     <>
       {/* <!-- header --> */}
       <header className="py-4 shadow-sm bg-white">
         <div className="container flex items-center justify-between">
-          <a href="index.html">
+          <a href="/">
             <img src="logo.svg" alt="Logo" className="w-32" />
           </a>
 
@@ -24,41 +29,50 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <a
-              href="#"
-              className="text-center text-gray-700 hover:text-primary transition relative"
-            >
-              <div className="text-2xl">
-                <i className="fa-regular fa-heart"></i>
+          {session?.user ? (
+            <div className="flex items-center space-x-4">
+              <a
+                href="#"
+                className="text-center text-gray-700 hover:text-primary transition relative"
+              >
+                <div className="text-2xl">
+                  <i className="fa-regular fa-heart"></i>
+                </div>
+                <div className="text-xs leading-3">Wishlist</div>
+                <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
+                  8
+                </div>
+              </a>
+              <a
+                href="#"
+                className="text-center text-gray-700 hover:text-primary transition relative"
+              >
+                <div className="text-2xl">
+                  <i className="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div className="text-xs leading-3">Cart</div>
+                <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
+                  2
+                </div>
+              </a>
+              <a
+                href="/account"
+                className="text-center text-gray-700 hover:text-primary transition relative"
+              >
+                <div className="text-2xl">
+                  <i className="fa-regular fa-user"></i>
+                </div>
+                <div className="text-xs leading-3">
+                  Account | {session?.user?.name} {session?.user?.email}
+                </div>
+              </a>
+              <div className="text-md leading-3 font-bold text-red-600">
+                <Signout />
               </div>
-              <div className="text-xs leading-3">Wishlist</div>
-              <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
-                8
-              </div>
-            </a>
-            <a
-              href="#"
-              className="text-center text-gray-700 hover:text-primary transition relative"
-            >
-              <div className="text-2xl">
-                <i className="fa-solid fa-bag-shopping"></i>
-              </div>
-              <div className="text-xs leading-3">Cart</div>
-              <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
-                2
-              </div>
-            </a>
-            <a
-              href="#"
-              className="text-center text-gray-700 hover:text-primary transition relative"
-            >
-              <div className="text-2xl">
-                <i className="fa-regular fa-user"></i>
-              </div>
-              <div className="text-xs leading-3">Account</div>
-            </a>
-          </div>
+            </div>
+          ) : (
+            <SingIn />
+          )}
         </div>
       </header>
       {/* <!-- ./header -->
@@ -150,14 +164,11 @@ export default function Navbar() {
 
           <div className="flex items-center justify-between flex-grow md:pl-12 py-5">
             <div className="flex items-center space-x-6 capitalize">
-              <a
-                href="index.html"
-                className="text-gray-200 hover:text-white transition"
-              >
+              <a href="/" className="text-gray-200 hover:text-white transition">
                 Home
               </a>
               <a
-                href="pages/shop.html"
+                href="/shop"
                 className="text-gray-200 hover:text-white transition"
               >
                 Shop
@@ -170,7 +181,7 @@ export default function Navbar() {
               </a>
             </div>
             <a
-              href="pages/login.html"
+              href="/login"
               className="text-gray-200 hover:text-white transition"
             >
               Login

@@ -1,9 +1,42 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import SocialLogins from "./SocialLogins";
 
 export default function RegisterForm() {
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  async function onSubmit(event) {
+    event.preventDefault();
+    try {
+      const formData = new FormData(event.target);
+      const name = formData.get("name");
+      const email = formData.get("email");
+      const password = formData.get("password");
+
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+      res.status === 201 && router.push("/login");
+    } catch (error) {
+      setError(error.message);
+    }
+  }
   return (
     <>
       <div className="contain py-16">
+        <div className="text-xl text-red-500 text-center">{error && error}</div>
+
         <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
           <h2 className="text-2xl uppercase font-medium mb-1">
             Create an account
@@ -11,10 +44,10 @@ export default function RegisterForm() {
           <p className="text-gray-600 mb-6 text-sm">
             Register for new cosutumer
           </p>
-          <form action="#" method="post" autocomplete="off">
+          <form action="#" method="post" autoComplete="off" onSubmit={onSubmit}>
             <div className="space-y-2">
               <div>
-                <label for="name" className="text-gray-600 mb-2 block">
+                <label htmlFor="name" className="text-gray-600 mb-2 block">
                   Full Name
                 </label>
                 <input
@@ -26,7 +59,7 @@ export default function RegisterForm() {
                 />
               </div>
               <div>
-                <label for="email" className="text-gray-600 mb-2 block">
+                <label htmlFor="email" className="text-gray-600 mb-2 block">
                   Email address
                 </label>
                 <input
@@ -38,7 +71,7 @@ export default function RegisterForm() {
                 />
               </div>
               <div>
-                <label for="password" className="text-gray-600 mb-2 block">
+                <label htmlFor="password" className="text-gray-600 mb-2 block">
                   Password
                 </label>
                 <input
@@ -50,7 +83,7 @@ export default function RegisterForm() {
                 />
               </div>
               <div>
-                <label for="confirm" className="text-gray-600 mb-2 block">
+                <label htmlFor="confirm" className="text-gray-600 mb-2 block">
                   Confirm password
                 </label>
                 <input
@@ -71,7 +104,7 @@ export default function RegisterForm() {
                   className="text-primary focus:ring-0 rounded-sm cursor-pointer"
                 />
                 <label
-                  for="aggrement"
+                  htmlFor="aggrement"
                   className="text-gray-600 ml-3 cursor-pointer"
                 >
                   I have read and agree to the{" "}

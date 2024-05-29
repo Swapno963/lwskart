@@ -1,13 +1,32 @@
+"use client";
+import { login } from "../actions";
 import SocialLogins from "./SocialLogins";
 
 export default function LoginForm() {
+  // const router = useRouter();
+  async function onSubmit(event) {
+    event.preventDefault();
+    try {
+      const formData = new FormData(event.target);
+      const email = formData.get("email");
+      const password = formData.get("password");
+
+      const response = await login({ email, password });
+      // console.log(email, password);
+      // console.log(formData);
+      // router.push("/account");
+      console.log("response from login:", response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
       <div className="contain py-16">
         <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
           <h2 className="text-2xl uppercase font-medium mb-1">Login</h2>
           <p className="text-gray-600 mb-6 text-sm">welcome back customer</p>
-          <form action="#" method="post" autocomplete="off">
+          <form autocomplete="off" action="#" method="post" onSubmit={onSubmit}>
             <div className="space-y-2">
               <div>
                 <label for="email" className="text-gray-600 mb-2 block">
@@ -75,7 +94,7 @@ export default function LoginForm() {
 
           <p className="mt-4 text-center text-gray-600">
             Don't have account?{" "}
-            <a href="register.html" className="text-primary">
+            <a href="/register" className="text-primary">
               Register now
             </a>
           </p>

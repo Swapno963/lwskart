@@ -24,5 +24,5 @@ export const discountedPrice = (originalPrice, discountPercentage) => {
   const discountedPrice = originalPrice - discountAmount;
 
   // Return the discounted price
-  return discountedPrice;
+  return discountedPrice.toFixed(2);
 };

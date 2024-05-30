@@ -8,7 +8,9 @@ import Products from "./Products";
 
 export default async function HomeArea() {
   const products = await getAllProduct();
-  console.log("All products are : ", products);
+
+  // console.log("All products are : ", products);
+
   return (
     <>
       <Banner />

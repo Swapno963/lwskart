@@ -1,5 +1,6 @@
 import { categoryModel } from "@/models/category_model";
 import { productModel } from "@/models/product_models";
+import { userModel } from "@/models/user_models";
 import { replaceMongoIdInArray } from "@/utils/data-util";
 
 // geting all data from category db model
@@ -57,4 +58,9 @@ export async function getSearchProduct(searchQuery) {
     })
     .lean();
   return replaceMongoIdInArray(product);
+}
+
+export async function getUserIdByEmail(email) {
+  const user = await userModel.findOne({ email: email });
+  console.log("getUserIdByEmail", user);
 }

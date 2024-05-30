@@ -12,7 +12,9 @@ export default function page() {
         </span>
         <p class="text-gray-600 font-medium">Profile</p>
       </div>
-
+      <h2 className="text-2xl pl-12 ml-12 font-medium text-gray-800 uppercase mb-6">
+        Your Wish List :
+      </h2>
       <WhitelistArea />
     </>
   );

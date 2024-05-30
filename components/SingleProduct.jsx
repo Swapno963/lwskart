@@ -1,8 +1,12 @@
+import { auth } from "@/auth";
 import { discountedPrice } from "@/utils/data-util";
 import Image from "next/image";
+import AddTooCart from "./AddTooCart";
 import ProductSchemaScript from "./meta/ProductSchemaScript";
 
-export default function SingleProduct({ product }) {
+export default async function SingleProduct({ product }) {
+  const session = await auth();
+
   return (
     <div className="bg-white shadow rounded overflow-hidden group">
       <ProductSchemaScript product={product} />
@@ -71,12 +75,7 @@ export default function SingleProduct({ product }) {
           </div>
         </div>
       </div>
-      <a
-        href="#"
-        className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-      >
-        Add to cart
-      </a>
+      <AddTooCart session={session} product={product} />
     </div>
   );
 }

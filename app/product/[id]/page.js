@@ -5,7 +5,7 @@ import { getProductById } from "@/database/queries";
 
 export default async function page({ params: { id } }) {
   const product = await getProductById(id);
-  console.log("produc by id is :", product);
+  // console.log("produc by id is :", product);
   return (
     <>
       <div class="container py-4 flex items-center gap-3">

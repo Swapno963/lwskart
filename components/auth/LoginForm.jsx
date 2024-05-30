@@ -21,7 +21,7 @@ export default function LoginForm() {
       // console.log(email, password);
       // console.log(formData);
       router.push("/");
-      console.log("response from login:", response);
+      // console.log("response from login:", response);
     } catch (error) {
       toast.warn("Plese Register first!");
       console.log(error);

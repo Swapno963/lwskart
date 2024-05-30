@@ -43,3 +43,18 @@ export async function getProductByCategory(categoryName) {
     .lean();
   return replaceMongoIdInArray(product);
 }
+
+// filter by title,category,description,brand
+export async function getSearchProduct(searchQuery) {
+  const product = await productModel
+    .find({
+      $or: [
+        { title: { $regex: new RegExp(searchQuery, "i") } },
+        { category_name: { $regex: new RegExp(searchQuery, "i") } },
+        { detail: { $regex: new RegExp(searchQuery, "i") } },
+        { brand: { $regex: new RegExp(searchQuery, "i") } },
+      ],
+    })
+    .lean();
+  return replaceMongoIdInArray(product);
+}

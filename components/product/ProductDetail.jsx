@@ -2,11 +2,16 @@
 import { discountedPrice } from "@/utils/data-util";
 import Image from "next/image";
 import { useState } from "react";
+import SocialShare from "./SocialShare";
 
 export default function ProductDetail({ product }) {
   const [bigImg, setBigImg] = useState(product?.img_url[0]);
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="container grid grid-cols-2 gap-6 pb-[120px]">
+      {/* modal for share */}
+      <SocialShare showModal={showModal} setShowModal={setShowModal} />
+      {/* image */}
       <div>
         <Image
           width={150}
@@ -154,6 +159,12 @@ export default function ProductDetail({ product }) {
           >
             <i className="fa-solid fa-heart"></i> Wishlist
           </a>
+          <p
+            onClick={() => setShowModal(!showModal)}
+            className="border border-gray-300 bg-green-400 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-white transition"
+          >
+            <i className="fa-solid fa-heart"></i> Share On Socials
+          </p>
         </div>
 
         <div className="flex gap-3 mt-4">

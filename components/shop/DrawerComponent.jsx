@@ -13,7 +13,7 @@ export default function DrawerComponent() {
         >
           <svg
             class="w-5 h-5 mr-2"
-            aria-hidden="true"
+            // aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@ export default function DrawerComponent() {
           class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
         >
           <svg
-            aria-hidden="true"
+            // aria-hidden="true"
             class="w-5 h-5"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -133,7 +133,7 @@ export default function DrawerComponent() {
             </h3>
             <div class="flex items-center gap-2">
               <div class="size-selector">
-                <input type="radio" name="size" id="size-xs" class="hidden" />
+                <input type="radio" name="size" id="size-xs" class="" />
                 <label
                   for="size-xs"
                   class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
@@ -142,7 +142,7 @@ export default function DrawerComponent() {
                 </label>
               </div>
               <div class="size-selector">
-                <input type="radio" name="size" id="size-sm" class="hidden" />
+                <input type="radio" name="size" id="size-sm" class="" />
                 <label
                   for="size-sm"
                   class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
@@ -151,7 +151,7 @@ export default function DrawerComponent() {
                 </label>
               </div>
               <div class="size-selector">
-                <input type="radio" name="size" id="size-m" class="hidden" />
+                <input type="radio" name="size" id="size-m" class="" />
                 <label
                   for="size-m"
                   class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
@@ -160,7 +160,7 @@ export default function DrawerComponent() {
                 </label>
               </div>
               <div class="size-selector">
-                <input type="radio" name="size" id="size-l" class="hidden" />
+                <input type="radio" name="size" id="size-l" class="" />
                 <label
                   for="size-l"
                   class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
@@ -169,7 +169,7 @@ export default function DrawerComponent() {
                 </label>
               </div>
               <div class="size-selector">
-                <input type="radio" name="size" id="size-xl" class="hidden" />
+                <input type="radio" name="size" id="size-xl" class="" />
                 <label
                   for="size-xl"
                   class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
@@ -194,7 +194,7 @@ export default function DrawerComponent() {
             Get access
             <svg
               class="w-4 h-4 ml-2"
-              aria-hidden="true"
+              // aria-hidden="true"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"

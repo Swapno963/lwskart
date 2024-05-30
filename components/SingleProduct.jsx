@@ -1,9 +1,11 @@
 import { discountedPrice } from "@/utils/data-util";
 import Image from "next/image";
+import ProductSchemaScript from "./meta/ProductSchemaScript";
 
 export default function SingleProduct({ product }) {
   return (
     <div className="bg-white shadow rounded overflow-hidden group">
+      <ProductSchemaScript product={product} />
       <div className="relative">
         <Image
           width={150}

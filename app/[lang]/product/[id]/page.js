@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import ProductDescription from "@/components/product/ProductDescription";
 import ProductDetail from "@/components/product/ProductDetail";
 import RelatedProducts from "@/components/product/RelatedProducts";
@@ -5,6 +6,7 @@ import { getProductById } from "@/database/queries";
 
 export default async function page({ params: { id } }) {
   const product = await getProductById(id);
+  const session = await auth();
   // console.log("produc by id is :", product);
   return (
     <>
@@ -20,7 +22,7 @@ export default async function page({ params: { id } }) {
 
       {/*  */}
 
-      <ProductDetail product={product} />
+      <ProductDetail product={product} session={session} />
       <ProductDescription product={product} />
       <RelatedProducts category_name={product?.category_name} />
     </>

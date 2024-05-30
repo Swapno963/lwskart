@@ -6,9 +6,9 @@ const wishSchema = new Schema({
     required: true,
     type: ObjectId,
   },
-  userId: {
+  userEmail: {
     required: true,
-    type: ObjectId,
+    type: String,
   },
 });
 

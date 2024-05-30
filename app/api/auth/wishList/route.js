@@ -5,15 +5,15 @@ import dbConnect from "@/service/mongo";
 import mongoose from "mongoose";
 
 export const POST = async (request) => {
-  const { userId, productId } = await request.json();
+  const { userEmail, productId } = await request.json();
 
-  console.log(userId, productId);
+  console.log(userEmail, productId);
 
   await dbConnect();
 
   const payload = {
     productId: new mongoose.Types.ObjectId(productId),
-    userId: new mongoose.Types.ObjectId(userId),
+    userEmail,
   };
 
   console.log(payload);

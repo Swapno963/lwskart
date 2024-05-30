@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-export default function AddTooCart({ product, session }) {
+export default function AddToWishList({ product, session }) {
   const router = useRouter();
 
   async function handelClick() {
@@ -13,7 +13,7 @@ export default function AddTooCart({ product, session }) {
     } else {
       // we have user
       try {
-        const res = await fetch("/api/auth/cart", {
+        const res = await fetch("/api/auth/wishList", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -33,9 +33,9 @@ export default function AddTooCart({ product, session }) {
   return (
     <p
       onClick={handelClick}
-      className="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition"
+      className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
     >
-      Add to cart
+      Wishlist
     </p>
   );
 }

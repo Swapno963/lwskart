@@ -170,7 +170,7 @@ export default function Footer() {
               height={100}
               src="/methods.png"
               alt="Food image"
-              className="h-5"
+              style={{ width: "auto", height: "100%" }}
             />
           </div>
         </div>

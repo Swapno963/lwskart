@@ -3,19 +3,22 @@
 import { useState } from "react";
 import PersonalInfoModal from "./PersonalInfoModal";
 
-export default function AccountArea({ session }) {
-  const [accountInfo, setAccountInfo] = useState({
-    personal_name: "",
-    personal_email: "",
-    personal_phone_no: "",
-    shipping_name: "",
-    shipping_address: "",
-    shipping_phone_no: "",
-    billing_name: "",
-    billing_address: "",
-    billing_phone_no: "",
-    loginEmail: session?.user?.email,
-  });
+export default function AccountArea({ session, ourUser }) {
+  console.log(ourUser);
+  const [accountInfo, setAccountInfo] = useState(
+    ourUser || {
+      personal_name: "",
+      personal_email: "",
+      personal_phone_no: "",
+      shipping_name: "",
+      shipping_address: "",
+      shipping_phone_no: "",
+      billing_name: "",
+      billing_address: "",
+      billing_phone_no: "",
+      loginEmail: session?.user?.email,
+    }
+  );
   const [showP, setShowP] = useState(false);
   return (
     <>

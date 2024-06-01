@@ -2,11 +2,11 @@
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { useRef, useState } from "react";
-import InvoicePdf from "./InvoicePdf";
 // for email
 import emailjs from "@emailjs/browser";
+import InvoicePdf from "./InvoicePdf";
 
-export default function GeneratePdf() {
+export default function GeneratePdf({ allproduct }) {
   const [download, setDownload] = useState();
   const [generatedpdf, setGeneratedPdf] = useState();
   const invoicePdfRef = useRef(null);
@@ -59,12 +59,13 @@ export default function GeneratePdf() {
     <>
       <button
         onClick={() => handelGeneratePdf()}
-        className="bg-green-500 font-bold  text-white py-2 px-3"
+        className="block w-full py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium"
       >
-        Download Pdf
+        Check Our And Download Invoice
       </button>
       <div ref={invoicePdfRef}>
-        <InvoicePdf />
+        <InvoicePdf allproduct={allproduct} />
+        {/* <div>dkklfdsk</div> */}
       </div>
     </>
   );

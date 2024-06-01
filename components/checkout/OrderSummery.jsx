@@ -4,8 +4,9 @@ import GeneratePdf from "./GeneratePdf";
 export default async function OrderSummery({ session }) {
   const products = await getProductForCheckout(session?.user?.email);
   const ids = products?.map((pd) => pd?.pId);
-  //   console.log(ids);
+  // console.log(ids);
   const allproduct = await getProductByIds(ids);
+  console.log(allproduct?.length);
   const sum = allproduct.reduce(
     (accumulator, currentValue) => accumulator + currentValue?.price,
     0
@@ -45,6 +46,7 @@ export default async function OrderSummery({ session }) {
         <p>${sum}</p>
       </div>
 
+      {/* agree terms and condition */}
       <div className="flex items-center mb-4 mt-2">
         <input
           type="checkbox"
@@ -63,14 +65,7 @@ export default async function OrderSummery({ session }) {
         </label>
       </div>
 
-      <a
-        href="#"
-        className="block w-full py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium"
-      >
-        Place order
-      </a>
-
-      <GeneratePdf />
+      <GeneratePdf allproduct={allproduct} />
     </div>
   );
 }

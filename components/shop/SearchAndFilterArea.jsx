@@ -6,11 +6,11 @@ export default async function SearchAndFilterArea({ searchResult }) {
   const allCategoryData = await getAllCategory();
 
   return (
-    <div class="grid grid-cols-12 gap-4">
-      <div class="col-span-4 bg-gray-200">
+    <div className="grid grid-cols-12 gap-4">
+      <div className="col-span-4 bg-gray-200">
         <Sidebar allCategoryData={allCategoryData} />
       </div>
-      <div class="col-span-8 bg-gray-300">
+      <div className="col-span-8 bg-gray-300">
         <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
           Search Reasult
         </h2>

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Ads() {
   return (
-    <div class="container pb-16">
+    <div className="container pb-16">
       <a href="#">
         <Image
           width={650}

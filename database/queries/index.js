@@ -1,6 +1,8 @@
 import { cartModel } from "@/models/Cart_model";
+import { accountInfoModel } from "@/models/account_info_model";
 import { categoryModel } from "@/models/category_model";
 import { productModel } from "@/models/product_models";
+import { wishModel } from "@/models/wishList_model";
 import {
   replaceMongoIdInArray,
   replaceMongoProductIdInArray,
@@ -68,10 +70,22 @@ export async function getProductForCheckout(userEmail) {
   const product = await cartModel.find({ userEmail: userEmail }).lean();
   return replaceMongoProductIdInArray(product);
 }
+// find by email from wishlist for navbar
+export async function getProductForNavbar(userEmail) {
+  const product = await wishModel.find({ userEmail: userEmail }).lean();
+  return replaceMongoProductIdInArray(product);
+}
 // find by ids from products for checkout
 export async function getProductByIds(objectIds) {
   // console.log("from index", objectIds);
   const products = await productModel.find({ _id: { $in: objectIds } });
   // console.log(products);
   return products;
+}
+// find by accountInfo By ids
+export async function getAccountInfoByEmail(email) {
+  // console.log("from index", objectIds);
+  const user = await accountInfoModel.findOne({ loginEmail: email });
+  // console.log(products);
+  return user;
 }

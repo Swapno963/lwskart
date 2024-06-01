@@ -12,7 +12,7 @@ export default function CartArea() {
                 height={100}
                 src="/products/product6.jpg"
                 alt="Food image"
-                classNameName="w-full h-full rounded-lg object-contain"
+                className="w-full h-full rounded-lg object-contain"
               />
             </div>
             <div className="w-1/3">

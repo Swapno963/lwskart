@@ -41,3 +41,6 @@ export const discountedPrice = (originalPrice, discountPercentage) => {
   // Return the discounted price
   return discountedPrice.toFixed(2);
 };
+
+// inventory management
+export const inventoryManagement = (productId, addedQuantity) => {};

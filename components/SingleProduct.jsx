@@ -70,8 +70,8 @@ export default async function SingleProduct({ product }) {
               <i className="fa-solid fa-star"></i>
             </span>
           </div>
-          <div className="text-xs text-gray-500 ml-3">
-            ({product?.reviewCount})
+          <div className="text-xs text-gray-500 ml-1">
+            Review : ({product?.reviewCount})
           </div>
         </div>
       </div>

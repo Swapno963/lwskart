@@ -23,7 +23,7 @@ export default async function Categories({ lang }) {
               height={200}
               src={category?.img_url}
               alt="Food image"
-              classNameName="w-full"
+              className="w-full"
             />
             <a
               href="#"

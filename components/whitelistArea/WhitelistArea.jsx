@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function WhitelistArea() {
   return (
     <>
@@ -5,10 +7,12 @@ export default function WhitelistArea() {
         <div class="mx-auto space-y-4 max-w-6xl">
           <div class="flex items-center justify-between border gap-6 p-4 border-gray-200 rounded">
             <div class="w-28">
-              <img
+              <Image
+                width={150}
+                height={100}
                 src="/products/product6.jpg"
-                alt="product 6"
-                class="w-full"
+                alt="Food image"
+                className="w-full"
               />
             </div>
             <div class="w-1/3">

@@ -1,10 +1,18 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <>
       <footer className="bg-white pt-16 pb-12 border-t border-gray-100">
         <div className="container grid grid-cols-1 ">
           <div className="col-span-1 space-y-4">
-            <img src="/logo.svg" alt="logo" className="w-30" />
+            <Image
+              width={150}
+              height={100}
+              src="/logo.svg"
+              alt="Food image"
+              className="w-30"
+            />
             <div className="mr-2">
               <p className="text-gray-500">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
@@ -157,7 +165,13 @@ export default function Footer() {
         <div className="container flex items-center justify-between">
           <p className="text-white">&copy; TailCommerce - All Right Reserved</p>
           <div>
-            <img src="/methods.png" alt="methods" className="h-5" />
+            <Image
+              width={150}
+              height={100}
+              src="/methods.png"
+              alt="Food image"
+              className="h-5"
+            />
           </div>
         </div>
       </div>

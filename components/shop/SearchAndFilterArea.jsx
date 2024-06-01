@@ -16,7 +16,7 @@ export default async function SearchAndFilterArea({ searchResult }) {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12">
           {searchResult?.map((pd) => (
-            <SingleProduct product={pd} />
+            <SingleProduct product={pd} key={pd?.id} />
           ))}
         </div>
 

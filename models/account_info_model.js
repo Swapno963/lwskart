@@ -1,6 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
 const accountInfoSchema = new Schema({
+  // email for identifying, this is what i get after login
+  loginEmail: {
+    required: true,
+    type: String,
+  },
   // personal info
   personal_name: {
     required: true,

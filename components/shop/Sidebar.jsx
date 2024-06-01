@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default async function Sidebar({ allCategoryData }) {
+export default function Sidebar({ allCategoryData }) {
   const [filterOption, setSearchFilterOption] = useState({
     minPrice: Number.MIN_SAFE_INTEGER,
     maxPrice: Number.MAX_SAFE_INTEGER,
@@ -19,7 +19,7 @@ export default async function Sidebar({ allCategoryData }) {
           </h3>
           <div className="space-y-2">
             {allCategoryData?.map((ct) => (
-              <div className="flex items-center">
+              <div key={ct?.id} className="flex items-center">
                 <input
                   type="checkbox"
                   name="cat-1"

@@ -1,7 +1,10 @@
+import { cartModel } from "@/models/Cart_model";
 import { categoryModel } from "@/models/category_model";
 import { productModel } from "@/models/product_models";
-import { userModel } from "@/models/user_models";
-import { replaceMongoIdInArray } from "@/utils/data-util";
+import {
+  replaceMongoIdInArray,
+  replaceMongoProductIdInArray,
+} from "@/utils/data-util";
 
 // geting all data from category db model
 export async function getAllCategory() {
@@ -60,7 +63,15 @@ export async function getSearchProduct(searchQuery) {
   return replaceMongoIdInArray(product);
 }
 
-export async function getUserIdByEmail(email) {
-  const user = await userModel.findOne({ email: email });
-  console.log("getUserIdByEmail", user);
+// find by email from cart for checkout
+export async function getProductForCheckout(userEmail) {
+  const product = await cartModel.find({ userEmail: userEmail }).lean();
+  return replaceMongoProductIdInArray(product);
+}
+// find by ids from products for checkout
+export async function getProductByIds(objectIds) {
+  // console.log("from index", objectIds);
+  const products = await productModel.find({ _id: { $in: objectIds } });
+  // console.log(products);
+  return products;
 }

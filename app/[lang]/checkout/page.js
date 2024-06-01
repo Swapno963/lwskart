@@ -1,6 +1,9 @@
+import { auth } from "@/auth";
 import Checkout from "@/components/checkout/Checkout";
 
-export default function CheckoutArea() {
+export default async function CheckoutArea() {
+  const session = await auth();
+
   return (
     <>
       <div class="container py-4 flex items-center gap-3">
@@ -12,7 +15,7 @@ export default function CheckoutArea() {
         </span>
         <p class="text-gray-600 font-medium">Checkout</p>
       </div>
-      <Checkout />
+      <Checkout session={session} />
     </>
   );
 }

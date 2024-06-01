@@ -13,7 +13,7 @@ export default async function RelatedProducts({ category_name }) {
         <div class="grid grid-cols-4 gap-6">
           {/* single product */}
           {relatedproduct?.map((pd) => (
-            <SingleProduct product={pd} />
+            <SingleProduct product={pd} key={pd?.id} />
           ))}
         </div>
       </div>

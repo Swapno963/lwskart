@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Products() {
   return (
     <>
@@ -5,10 +7,12 @@ export default function Products() {
         <div class="grid md:grid-cols-3 grid-cols-2 gap-6">
           <div class="bg-white shadow rounded overflow-hidden group">
             <div class="relative">
-              <img
+              <Image
+                width={150}
+                height={100}
                 src="/products/product1.jpg"
-                alt="product 1"
-                class="w-full"
+                alt="Food image"
+                className="w-full"
               />
               <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
                 <a

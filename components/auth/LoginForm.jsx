@@ -101,7 +101,7 @@ export default function LoginForm() {
           {/* <!-- ./login with --> */}
 
           <p className="mt-4 text-center text-gray-600">
-            Don't have account?{" "}
+            Do not have account?
             <a href="/register" className="text-primary">
               Register now
             </a>

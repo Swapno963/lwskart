@@ -1,9 +1,10 @@
 import { auth } from "@/auth";
+import Image from "next/image";
 import NavSearch from "./NavSearch";
 import Signout from "./auth/Signout";
 export default async function Navbar() {
   const session = await auth();
-  console.log("from navbar", session);
+  // console.log("from navbar", session);
 
   return (
     <>
@@ -11,7 +12,13 @@ export default async function Navbar() {
       <header className="py-4 shadow-sm bg-white">
         <div className="container flex items-center justify-between">
           <a href="/">
-            <img src="/logo.svg" alt="Logo" className="w-32" />
+            <Image
+              width={150}
+              height={100}
+              src="/logo.svg"
+              alt="Food image"
+              className="w-32"
+            />
           </a>
 
           <NavSearch />
@@ -70,31 +77,29 @@ export default async function Navbar() {
           </div>
         </div>
       </header>
-      {/* <!-- ./header -->
 
-    <!-- navbar --> */}
       <nav className="bg-gray-800">
         <div className="container flex">
-          <div className="px-8 py-4 bg-primary md:flex items-center cursor-pointer relative group hidden">
+          <div className="px-8 py-4 bg-primary md:flex items-center cursor-pointer relative group ">
             <span className="text-white">
               <i className="fa-solid fa-bars"></i>
             </span>
-            <span className="capitalize ml-2 text-white hidden">
-              All Categories
-            </span>
+            <span className="capitalize ml-2 text-white ">All Categories</span>
 
             {/* <!-- dropdown --> */}
             <div
-              className="absolute left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible w-[600px]"
+              className="absolute left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300  group-hover:visible w-[600px]"
               style={{ width: "300px" }}
             >
               <a
                 href="#"
                 className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
               >
-                <img
-                  src="icons/sofa.svg"
-                  alt="sofa"
+                <Image
+                  width={150}
+                  height={100}
+                  src="/icons/sofa.svg"
+                  alt="Food image"
                   className="w-5 h-5 object-contain"
                 />
                 <span className="ml-6 text-gray-600 text-sm">Sofa</span>
@@ -103,9 +108,11 @@ export default async function Navbar() {
                 href="#"
                 className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
               >
-                <img
-                  src="icons/terrace.svg"
-                  alt="terrace"
+                <Image
+                  width={150}
+                  height={100}
+                  src="/icons/terrace.svg"
+                  alt="Food image"
                   className="w-5 h-5 object-contain"
                 />
                 <span className="ml-6 text-gray-600 text-sm">Living Room</span>
@@ -114,9 +121,11 @@ export default async function Navbar() {
                 href="#"
                 className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
               >
-                <img
-                  src="icons/bed.svg"
-                  alt="bed"
+                <Image
+                  width={150}
+                  height={100}
+                  src="/icons/bed.svg"
+                  alt="Food image"
                   className="w-5 h-5 object-contain"
                 />
                 <span className="ml-6 text-gray-600 text-sm">Bedroom</span>
@@ -125,9 +134,11 @@ export default async function Navbar() {
                 href="#"
                 className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
               >
-                <img
-                  src="icons/office.svg"
-                  alt="Outdoor"
+                <Image
+                  width={150}
+                  height={100}
+                  src="/icons/office.svg"
+                  alt="Food image"
                   className="w-5 h-5 object-contain"
                 />
                 <span className="ml-6 text-gray-600 text-sm">Outdoor</span>
@@ -136,9 +147,11 @@ export default async function Navbar() {
                 href="#"
                 className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
               >
-                <img
-                  src="icons/outdoor-cafe.svg"
-                  alt="outdoor"
+                <Image
+                  width={150}
+                  height={100}
+                  src="/icons/outdoor-cafe.svg"
+                  alt="Food image"
                   className="w-5 h-5 object-contain"
                 />
                 <span className="ml-6 text-gray-600 text-sm">Outdoor</span>
@@ -147,9 +160,11 @@ export default async function Navbar() {
                 href="#"
                 className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
               >
-                <img
-                  src="icons/bed-2.svg"
-                  alt="Mattress"
+                <Image
+                  width={150}
+                  height={100}
+                  src="/icons/bed-2.svg"
+                  alt="Food image"
                   className="w-5 h-5 object-contain"
                 />
                 <span className="ml-6 text-gray-600 text-sm">Mattress</span>

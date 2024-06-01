@@ -42,7 +42,7 @@ export default function PersonalInfoModal({
         </button>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label for="company" className="text-gray-600">
+            <label htmlFor="company" className="text-gray-600">
               personal_name
             </label>
             <input
@@ -54,7 +54,7 @@ export default function PersonalInfoModal({
             />
           </div>
           <div>
-            <label for="region" className="text-gray-600">
+            <label htmlFor="region" className="text-gray-600">
               personal_email
             </label>
             <input
@@ -66,7 +66,7 @@ export default function PersonalInfoModal({
             />
           </div>
           <div>
-            <label for="address" className="text-gray-600">
+            <label htmlFor="address" className="text-gray-600">
               personal_phone_nos
             </label>
             <input

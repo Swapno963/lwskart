@@ -1,14 +1,10 @@
 "use client";
 
-import { useState } from "react";
-
-export default function Sidebar({ allCategoryData }) {
-  const [filterOption, setSearchFilterOption] = useState({
-    minPrice: Number.MIN_SAFE_INTEGER,
-    maxPrice: Number.MAX_SAFE_INTEGER,
-    size: "",
-  });
-  console.log(filterOption);
+export default function Sidebar({
+  allCategoryData,
+  filterOption,
+  setSearchFilterOption,
+}) {
   return (
     <div className="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hiddenb  md:block">
       <div className="divide-y divide-gray-200 space-y-5">
@@ -19,15 +15,24 @@ export default function Sidebar({ allCategoryData }) {
           </h3>
           <div className="space-y-2">
             {allCategoryData?.map((ct) => (
-              <div key={ct?.id} className="flex items-center">
+              <div
+                onClick={(e) =>
+                  setSearchFilterOption({
+                    ...filterOption,
+                    category_name: ct?.category_name,
+                  })
+                }
+                key={ct?.id}
+                className="flex items-center"
+              >
                 <input
-                  type="checkbox"
+                  type="radio"
                   name="cat-1"
                   id="cat-1"
                   className="text-primary focus:ring-0 rounded-sm cursor-pointer"
                 />
                 <label
-                  for="cat-1"
+                  htmlFor="cat-1"
                   className="text-gray-600 ml-3 cusror-pointer"
                 >
                   {ct?.category_name}
@@ -89,7 +94,7 @@ export default function Sidebar({ allCategoryData }) {
                     size: "xs",
                   })
                 }
-                for="size-xs"
+                htmlFor="size-xs"
                 className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
               >
                 XS
@@ -104,7 +109,7 @@ export default function Sidebar({ allCategoryData }) {
                     size: "s",
                   })
                 }
-                for="size-sm"
+                htmlFor="size-sm"
                 className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
               >
                 S
@@ -119,7 +124,7 @@ export default function Sidebar({ allCategoryData }) {
                     size: "m",
                   })
                 }
-                for="size-m"
+                htmlFor="size-m"
                 className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
               >
                 M
@@ -134,7 +139,7 @@ export default function Sidebar({ allCategoryData }) {
                     size: "l",
                   })
                 }
-                for="size-l"
+                htmlFor="size-l"
                 className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
               >
                 L
@@ -149,7 +154,7 @@ export default function Sidebar({ allCategoryData }) {
                     size: "xl",
                   })
                 }
-                for="size-xl"
+                htmlFor="size-xl"
                 className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
               >
                 XL

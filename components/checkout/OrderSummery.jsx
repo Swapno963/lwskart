@@ -55,7 +55,7 @@ export default async function OrderSummery({ session }) {
           className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
         />
         <label
-          htmlFor="aggrement"
+          htmlhtmlFor="aggrement"
           className="text-gray-600 ml-3 cursor-pointer text-sm"
         >
           I agree to the{" "}

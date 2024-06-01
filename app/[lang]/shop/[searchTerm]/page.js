@@ -1,8 +1,10 @@
 import SearchAndFilterArea from "@/components/shop/SearchAndFilterArea";
-import { getSearchProduct } from "@/database/queries";
+import { getAllCategory, getSearchProduct } from "@/database/queries";
 
 export default async function page({ params: { searchTerm } }) {
   const searchResult = await getSearchProduct(searchTerm);
+  const allCategoryData = await getAllCategory();
+
   // console.log("search reasult :", searchResult);
   return (
     <>
@@ -15,7 +17,11 @@ export default async function page({ params: { searchTerm } }) {
         </span>
         <p className="text-gray-600 font-medium">Shop</p>
       </div>
-      <SearchAndFilterArea searchResult={searchResult} />
+      <SearchAndFilterArea
+        searchResult={searchResult}
+        allCategoryData={allCategoryData}
+        searchTerm={searchTerm}
+      />
 
       {/* <div className="container grid md:grid-cols-4 grid-cols-2 gap-6 pt-4 pb-16 items-start"> */}
       {/* <DrawerInitAndToggle />

@@ -5,11 +5,11 @@ export default function Ads() {
     <div class="container pb-16">
       <a href="#">
         <Image
-          width={150}
+          width={650}
           height={100}
           src="/offer.jpg"
           alt="Food image"
-          className="w-12 h-12 object-contain"
+          className="w-full"
         />
       </a>
     </div>

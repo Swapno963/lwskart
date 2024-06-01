@@ -1,4 +1,8 @@
-export default function Banner() {
+import { getDictionary } from "@/app/[lang]/disctionaries";
+
+export default async function Banner({ lang }) {
+  const dictionary = await getDictionary(lang);
+
   return (
     <div
       className="bg-cover bg-no-repeat bg-center py-36"
@@ -20,7 +24,7 @@ export default function Banner() {
             className="bg-primary border border-primary text-white px-8 py-3 font-medium 
                 rounded-md hover:bg-transparent hover:text-primary"
           >
-            Shop Now
+            {dictionary?.shopNow}
           </a>
         </div>
       </div>

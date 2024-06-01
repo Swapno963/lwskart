@@ -6,6 +6,11 @@ const cartSchema = new Schema({
     required: true,
     type: ObjectId,
   },
+  quantity: {
+    required: false,
+    default: 1,
+    type: ObjectId,
+  },
   userEmail: {
     required: true,
     type: String,

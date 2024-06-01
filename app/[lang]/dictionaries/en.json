@@ -1,8 +1,10 @@
 {
-  "views": "Views",
-  "Detail": "Detail",
-  "ReleaseDate": "Release Date",
-  "AverageVote": "Average Vote",
-  "VoteCount": "Vote Count",
-  "Popularity": "Popularity "
+  "addToCart": "Add To Cart",
+  "trendingProducts": "TRENDING PRODUCTS",
+  "topNewArrival": "TOP NEW ARRIVAL",
+  "shopByCategory": "SHOP BY CATEGORY",
+  "support": "24/7 Support",
+  "moneyRturns": "Money Rturns",
+  "freeShipping": "Free Shipping",
+  "shopNow": "Popularity "
 }

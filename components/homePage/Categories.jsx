@@ -1,13 +1,16 @@
+import { getDictionary } from "@/app/[lang]/disctionaries";
 import { getAllCategory } from "@/database/queries";
 import Image from "next/image";
 
-export default async function Categories() {
+export default async function Categories({ lang }) {
+  const dictionary = await getDictionary(lang);
+
   const allCategoryData = await getAllCategory();
   // console.log("from all category", allCategoryData);
   return (
     <div className="container py-16">
       <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
-        shop by category
+        {dictionary?.shopByCategory}
       </h2>
       <div className="grid grid-cols-3 gap-3">
         {allCategoryData?.map((category) => (
@@ -16,11 +19,11 @@ export default async function Categories() {
             className="relative rounded-sm overflow-hidden group"
           >
             <Image
-              width={150}
-              height={100}
+              width={400}
+              height={200}
               src={category?.img_url}
               alt="Food image"
-              classNameName="w-full h-full rounded-lg object-contain"
+              classNameName="w-full"
             />
             <a
               href="#"

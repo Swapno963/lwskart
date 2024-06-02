@@ -5,6 +5,7 @@ import { productModel } from "@/models/product_models";
 import { wishModel } from "@/models/wishList_model";
 import {
   replaceMongoIdInArray,
+  replaceMongoIdInObject,
   replaceMongoProductIdInArray,
 } from "@/utils/data-util";
 
@@ -38,7 +39,7 @@ export async function getTrendingProduct() {
 export async function getProductById(productId) {
   const product = await productModel.findOne({ _id: productId }).lean();
   // return replaceMongoIdInArray(product);
-  return product;
+  return replaceMongoIdInObject(product);
 }
 
 // find by Category for detail page

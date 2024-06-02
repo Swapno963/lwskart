@@ -6,7 +6,8 @@ export default async function OrderSummery({ session }) {
   const ids = products?.map((pd) => pd?.pId);
   // console.log(ids);
   const allproduct = await getProductByIds(ids);
-  console.log(allproduct?.length);
+  // console.log(allproduct?.length);
+
   const sum = allproduct.reduce(
     (accumulator, currentValue) => accumulator + currentValue?.price,
     0

@@ -5,15 +5,16 @@ import dbConnect from "@/service/mongo";
 import mongoose from "mongoose";
 
 export const POST = async (request) => {
-  const { userEmail, productId } = await request.json();
+  const { userEmail, productId, quantity } = await request.json();
 
-  console.log(userEmail, productId);
+  // console.log(userEmail, productId);
 
   await dbConnect();
 
   const payload = {
     productId: new mongoose.Types.ObjectId(productId),
     userEmail,
+    quantity: parseInt(quantity),
   };
 
   console.log(payload);
@@ -24,6 +25,7 @@ export const POST = async (request) => {
       status: 201,
     });
   } catch (err) {
+    console.log(err);
     return new NextResponse(err.message, {
       status: 500,
     });

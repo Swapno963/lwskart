@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AddTooCart({ product, session }) {
+export default function AddTooCart({ product, session, quantity }) {
   const router = useRouter();
   const { cart, setCart } = useCart();
   async function handelClick() {
@@ -25,6 +25,7 @@ export default function AddTooCart({ product, session }) {
           body: JSON.stringify({
             productId: product?.id,
             userEmail: session?.user?.email,
+            quantity: quantity,
           }),
         });
         if (res.status === 201) {

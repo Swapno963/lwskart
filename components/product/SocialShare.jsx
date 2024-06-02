@@ -1,9 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 
 export default function SocialShare({ showModal, setShowModal }) {
-  const currentPageUrl = window.location.href;
+  // const currentPageUrl = window?.location.href;
+  const currentPageUrl = usePathname();
+
   const handelFbShare = () => {
     console.log("Current location is :", currentPageUrl);
   };

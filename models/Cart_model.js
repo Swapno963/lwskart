@@ -8,8 +8,7 @@ const cartSchema = new Schema({
   },
   quantity: {
     required: false,
-    default: 1,
-    type: ObjectId,
+    type: Number,
   },
   userEmail: {
     required: true,

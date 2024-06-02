@@ -7,8 +7,24 @@ import AddTooCart from "../AddTooCart";
 import SocialShare from "./SocialShare";
 
 export default function ProductDetail({ product, session }) {
+  console.log(product);
+  const [quantity, setQuantity] = useState(1);
   const [bigImg, setBigImg] = useState(product?.img_url[0]);
   const [showModal, setShowModal] = useState(false);
+
+  const handelQuantity = (operation) => {
+    if (operation == "+") {
+      setQuantity((p) => p + 1);
+    } else {
+      if (quantity == 1) {
+        alert("Quantity can't be zero!");
+      } else {
+        setQuantity((p) => p - 1);
+      }
+    }
+
+    console.log(quantity);
+  };
   return (
     <div className="container grid grid-cols-2 gap-6 pb-[120px]">
       {/* modal for share */}
@@ -136,13 +152,19 @@ export default function ProductDetail({ product, session }) {
         <div className="mt-4">
           <h3 className="text-sm text-gray-800 uppercase mb-1">Quantity</h3>
           <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-            <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+            <div
+              onClick={() => handelQuantity("-")}
+              className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+            >
               -
             </div>
             <div className="h-8 w-8 text-base flex items-center justify-center">
-              4
+              {quantity}
             </div>
-            <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+            <div
+              onClick={() => handelQuantity("+")}
+              className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+            >
               +
             </div>
           </div>
@@ -150,7 +172,7 @@ export default function ProductDetail({ product, session }) {
 
         <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
           {/* add to cart */}
-          <AddTooCart session={session} product={product} />
+          <AddTooCart session={session} product={product} quantity={quantity} />
 
           {/* whitelist */}
           <AddToWishList session={session} product={product} />

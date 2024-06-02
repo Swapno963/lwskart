@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import BillingModal from "./BillingModal";
 import PersonalInfoModal from "./PersonalInfoModal";
+import ShippingModal from "./ShippingModal";
 
 export default function AccountArea({ session, ourUser }) {
   console.log(ourUser);
@@ -20,19 +22,20 @@ export default function AccountArea({ session, ourUser }) {
     }
   );
   const [showP, setShowP] = useState(false);
+  const [showS, setShowS] = useState(false);
+  const [showB, setShowB] = useState(false);
   return (
     <>
       <div className=" grid grid-cols-3 gap-4 mx-auto max-w-5xl">
         <div className="shadow rounded bg-white px-4 pt-6 pb-8">
-          {showP ? (
+          {/*For personal info */}
+          {showP && (
             <PersonalInfoModal
               showP={showP}
               setShowP={setShowP}
               accountInfo={accountInfo}
               setAccountInfo={setAccountInfo}
             />
-          ) : (
-            ""
           )}
 
           {/* personal info */}
@@ -61,38 +64,70 @@ export default function AccountArea({ session, ourUser }) {
         </div>
 
         {/* shipping address */}
+        {showS && (
+          <ShippingModal
+            showS={showS}
+            setShowS={setShowS}
+            accountInfo={accountInfo}
+            setAccountInfo={setAccountInfo}
+          />
+        )}
         <div className="shadow rounded bg-white px-4 pt-6 pb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-medium text-gray-800 text-lg">
               Shipping address
             </h3>
-            <a href="#" className="text-primary">
+            <p
+              onClick={() => setShowS(!showS)}
+              className="text-primary cursor-pointer"
+            >
               Edit
-            </a>
+            </p>
           </div>
           <div className="space-y-1">
-            <h4 className="text-gray-700 font-medium">John Doe</h4>
-            <p className="text-gray-800">Medan, North Sumatera</p>
-            <p className="text-gray-800">20371</p>
-            <p className="text-gray-800">0811 8877 988</p>
+            <h4 className="text-gray-700 font-medium">
+              Name : {accountInfo?.shipping_name}
+            </h4>
+            <p className="text-gray-800">
+              Address : {accountInfo?.shipping_address}
+            </p>
+            <p className="text-gray-800">
+              Shipping No :{accountInfo?.shipping_phone_no}
+            </p>
           </div>
         </div>
 
         {/* Billing address */}
+        {showB && (
+          <BillingModal
+            showB={showB}
+            setShowB={setShowB}
+            accountInfo={accountInfo}
+            setAccountInfo={setAccountInfo}
+          />
+        )}
         <div className="shadow rounded bg-white px-4 pt-6 pb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-medium text-gray-800 text-lg">
               Billing address
             </h3>
-            <a href="#" className="text-primary">
+            <p
+              onClick={() => setShowB(!showB)}
+              className="text-primary cursor-pointer"
+            >
               Edit
-            </a>
+            </p>
           </div>
           <div className="space-y-1">
-            <h4 className="text-gray-700 font-medium">John Doe</h4>
-            <p className="text-gray-800">Medan, North Sumatera</p>
-            <p className="text-gray-800">20317</p>
-            <p className="text-gray-800">0811 8877 988</p>
+            <h4 className="text-gray-700 font-medium">
+              Billing Name : {accountInfo?.billing_name}
+            </h4>
+            <p className="text-gray-800">
+              Billing Address : {accountInfo?.billing_address}
+            </p>
+            <p className="text-gray-800">
+              Billing No : {accountInfo?.billing_phone_no}
+            </p>
           </div>
         </div>
       </div>

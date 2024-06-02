@@ -3,19 +3,22 @@
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-export default function PersonalInfoModal({
-  showP,
-  setShowP,
+
+export default function ShippingModal({
+  showS,
+  setShowS,
   accountInfo,
   setAccountInfo,
 }) {
+  const [error, setError] = useState();
+
   const hadelBlur = (e) => {
     let name = e?.target?.name;
     let value = e?.target?.value;
     setAccountInfo({ ...accountInfo, [name]: value });
     console.log(accountInfo);
   };
-  const [error, setError] = useState();
+
   async function handelSubmit() {
     // let newAccount = { ...accountInfo, ["loginEmail"]: "s@g.com" };
     console.log(accountInfo);
@@ -28,7 +31,7 @@ export default function PersonalInfoModal({
         body: JSON.stringify({ accountInfo }),
       });
       if (res.status === 201) {
-        toast.success("Billing Address Updated!");
+        toast.success("Shipping Address Updated!");
         setShowB(!showB);
       }
     } catch (error) {
@@ -42,48 +45,48 @@ export default function PersonalInfoModal({
       <div className="bg-white rounded-lg shadow-lg  w-[50%] relative h-[300px] flex items-center justify-center">
         {/* input area */}
         <button
-          onClick={() => setShowP(!showP)}
+          onClick={() => setShowS(!showS)}
           className="bg-red-500 py-2 px-5  rounded-xl text-white absolute right-1 top-1 hover:bg-red-400"
         >
           Close
         </button>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="company" className="text-gray-600">
-              personal_name
+            <label htmlFor="shipping_name" className="text-gray-600">
+              Shipping Name
             </label>
             <input
               onChange={hadelBlur}
-              value={accountInfo?.personal_name}
+              value={accountInfo?.shipping_name}
               type="text"
-              name="personal_name"
-              id="company"
+              name="shipping_name"
+              id="shipping_name"
               className="input-box"
             />
           </div>
           <div>
-            <label htmlFor="region" className="text-gray-600">
-              personal_email
+            <label htmlFor="shipping_address" className="text-gray-600">
+              Shipping Address
             </label>
             <input
               onChange={hadelBlur}
-              value={accountInfo?.personal_email}
+              value={accountInfo?.shipping_address}
               type="text"
-              name="personal_email"
-              id="region"
+              name="shipping_address"
+              id="shipping_address"
               className="input-box"
             />
           </div>
           <div>
-            <label htmlFor="address" className="text-gray-600">
-              personal_phone_nos
+            <label htmlFor="shipping_phone_no" className="text-gray-600">
+              Shipping No:
             </label>
             <input
               onChange={hadelBlur}
-              value={accountInfo?.personal_phone_no}
+              value={accountInfo?.shipping_phone_no}
               type="text"
-              name="personal_phone_no"
-              id="address"
+              name="shipping_phone_no"
+              id="shipping_phone_no"
               className="input-box"
             />
           </div>

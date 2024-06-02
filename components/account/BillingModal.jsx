@@ -3,19 +3,22 @@
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-export default function PersonalInfoModal({
-  showP,
-  setShowP,
+
+export default function BillingModal({
+  showB,
+  setShowB,
   accountInfo,
   setAccountInfo,
 }) {
+  const [error, setError] = useState();
+
   const hadelBlur = (e) => {
     let name = e?.target?.name;
     let value = e?.target?.value;
     setAccountInfo({ ...accountInfo, [name]: value });
     console.log(accountInfo);
   };
-  const [error, setError] = useState();
+
   async function handelSubmit() {
     // let newAccount = { ...accountInfo, ["loginEmail"]: "s@g.com" };
     console.log(accountInfo);
@@ -27,6 +30,7 @@ export default function PersonalInfoModal({
         },
         body: JSON.stringify({ accountInfo }),
       });
+
       if (res.status === 201) {
         toast.success("Billing Address Updated!");
         setShowB(!showB);
@@ -42,48 +46,48 @@ export default function PersonalInfoModal({
       <div className="bg-white rounded-lg shadow-lg  w-[50%] relative h-[300px] flex items-center justify-center">
         {/* input area */}
         <button
-          onClick={() => setShowP(!showP)}
+          onClick={() => setShowB(!showB)}
           className="bg-red-500 py-2 px-5  rounded-xl text-white absolute right-1 top-1 hover:bg-red-400"
         >
           Close
         </button>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="company" className="text-gray-600">
-              personal_name
+            <label htmlFor="billing_name" className="text-gray-600">
+              Billing Name
             </label>
             <input
               onChange={hadelBlur}
-              value={accountInfo?.personal_name}
+              value={accountInfo?.billing_name}
               type="text"
-              name="personal_name"
-              id="company"
+              name="billing_name"
+              id="billing_name"
               className="input-box"
             />
           </div>
           <div>
-            <label htmlFor="region" className="text-gray-600">
-              personal_email
+            <label htmlFor="billing_address" className="text-gray-600">
+              Billing Address
             </label>
             <input
               onChange={hadelBlur}
-              value={accountInfo?.personal_email}
+              value={accountInfo?.billing_address}
               type="text"
-              name="personal_email"
-              id="region"
+              name="billing_address"
+              id="billing_address"
               className="input-box"
             />
           </div>
           <div>
-            <label htmlFor="address" className="text-gray-600">
-              personal_phone_nos
+            <label htmlFor="billing_phone_no" className="text-gray-600">
+              Billing No
             </label>
             <input
               onChange={hadelBlur}
-              value={accountInfo?.personal_phone_no}
+              value={accountInfo?.billing_phone_no}
               type="text"
-              name="personal_phone_no"
-              id="address"
+              name="billing_phone_no"
+              id="billing_phone_no"
               className="input-box"
             />
           </div>

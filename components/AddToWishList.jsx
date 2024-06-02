@@ -1,8 +1,14 @@
 "use client";
 
+import { useWishList } from "@/app/hooks/useWishList";
 import { useRouter } from "next/navigation";
+// for tost
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddToWishList({ product, session }) {
+  const { wishList, setWishList } = useWishList();
+
   const router = useRouter();
 
   async function handelClick() {
@@ -23,19 +29,33 @@ export default function AddToWishList({ product, session }) {
             userEmail: session?.user?.email,
           }),
         });
-        res.status === 201 && router.push("/checkout");
+
+        if (res.status === 201) {
+          toast.success("Product Added To WishList");
+          setWishList((p) => p + 1);
+          router.push("/wishList");
+        }
       } catch (error) {
         console.error(error);
         setError(error.message);
       }
     }
   }
+
+  // function incriseWish() {
+  //   setWishList((p) => p + 1);
+  //   console.log("clicked");
+  // }
   return (
-    <p
-      onClick={handelClick}
-      className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
-    >
-      Wishlist
-    </p>
+    <>
+      <ToastContainer />
+
+      <p
+        onClick={handelClick}
+        className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition cursor-pointer"
+      >
+        Wishlist
+      </p>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useCart } from "@/app/hooks/useCart";
 import { useRouter } from "next/navigation";
 // for tost
 import { toast, ToastContainer } from "react-toastify";
@@ -7,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function AddTooCart({ product, session }) {
   const router = useRouter();
-
+  const { cart, setCart } = useCart();
   async function handelClick() {
     console.log("clicked :", product);
     console.log("session :", session);
@@ -28,6 +29,7 @@ export default function AddTooCart({ product, session }) {
         });
         if (res.status === 201) {
           toast.success("Product Added To Cart");
+          setCart((p) => p + 1);
           router.push("/checkout");
         }
       } catch (error) {

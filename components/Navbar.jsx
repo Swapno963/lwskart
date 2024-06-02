@@ -1,5 +1,9 @@
 import { auth } from "@/auth";
-import { getAllCategory } from "@/database/queries";
+import {
+  getAllCategory,
+  getProductForCheckout,
+  getProductForNavbar,
+} from "@/database/queries";
 import Image from "next/image";
 import NavSearch from "./NavSearch";
 import NavWish_Cart from "./NavWish_Cart";
@@ -8,7 +12,8 @@ export default async function Navbar() {
   const session = await auth();
   // console.log("from navbar", session);
   const allCategoryData = await getAllCategory();
-  console.log("all category is :", allCategoryData);
+  const cartList = await getProductForCheckout(session?.user?.email);
+  const wishList = await getProductForNavbar(session?.user?.email);
   return (
     <>
       <div className=" w-full ">
@@ -28,7 +33,7 @@ export default async function Navbar() {
 
             <NavSearch />
             <div className="flex items-center space-x-4">
-              <NavWish_Cart userEmail={session?.user?.email} />
+              <NavWish_Cart cartL={cartList} wishL={wishList} />
 
               {session?.user ? (
                 <>
@@ -103,7 +108,7 @@ export default async function Navbar() {
                   Home
                 </a>
                 <a
-                  href="/shop"
+                  href="/shop/"
                   className="text-gray-200 hover:text-white transition"
                 >
                   Shop

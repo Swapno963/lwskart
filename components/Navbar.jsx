@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { getAllCategory } from "@/database/queries";
 import Image from "next/image";
 import NavSearch from "./NavSearch";
 import NavWish_Cart from "./NavWish_Cart";
@@ -6,7 +7,8 @@ import Signout from "./auth/Signout";
 export default async function Navbar() {
   const session = await auth();
   // console.log("from navbar", session);
-
+  const allCategoryData = await getAllCategory();
+  console.log("all category is :", allCategoryData);
   return (
     <>
       <div className=" w-full ">
@@ -56,6 +58,7 @@ export default async function Navbar() {
 
         <nav className="bg-gray-800 ">
           <div className="container flex">
+            {/* all category dropdown */}
             <div className="px-8 py-4 bg-primary md:flex items-center cursor-pointer relative group ">
               <span className="text-white">
                 <i className="fa-solid fa-bars"></i>
@@ -69,89 +72,28 @@ export default async function Navbar() {
                 className="absolute left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300  group-hover:visible w-[600px]"
                 style={{ width: "300px" }}
               >
-                <a
-                  href="#"
-                  className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                >
-                  <Image
-                    width={150}
-                    height={100}
-                    src="/icons/sofa.svg"
-                    alt="Food image"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span className="ml-6 text-gray-600 text-sm">Sofa</span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                >
-                  <Image
-                    width={150}
-                    height={100}
-                    src="/icons/terrace.svg"
-                    alt="Food image"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span className="ml-6 text-gray-600 text-sm">
-                    Living Room
-                  </span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                >
-                  <Image
-                    width={150}
-                    height={100}
-                    src="/icons/bed.svg"
-                    alt="Food image"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span className="ml-6 text-gray-600 text-sm">Bedroom</span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                >
-                  <Image
-                    width={150}
-                    height={100}
-                    src="/icons/office.svg"
-                    alt="Food image"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span className="ml-6 text-gray-600 text-sm">Outdoor</span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                >
-                  <Image
-                    width={150}
-                    height={100}
-                    src="/icons/outdoor-cafe.svg"
-                    alt="Food image"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span className="ml-6 text-gray-600 text-sm">Outdoor</span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                >
-                  <Image
-                    width={150}
-                    height={100}
-                    src="/icons/bed-2.svg"
-                    alt="Food image"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span className="ml-6 text-gray-600 text-sm">Mattress</span>
-                </a>
+                {allCategoryData?.map((cat) => (
+                  <a
+                    key={cat?.id}
+                    href={`/category/${cat?.category_name}`}
+                    className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+                  >
+                    <Image
+                      width={150}
+                      height={100}
+                      src={cat?.img_url}
+                      alt="Food image"
+                      className="w-10 h-10 object-contain"
+                    />
+                    <span className="ml-6 text-gray-600 text-sm">
+                      {cat?.category_name}
+                    </span>
+                  </a>
+                ))}
               </div>
             </div>
 
+            {/* Other nav links */}
             <div className="flex items-center justify-between flex-grow md:pl-12 py-5">
               <div className="flex items-center space-x-6 capitalize">
                 <a

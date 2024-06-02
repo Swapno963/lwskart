@@ -1,11 +1,9 @@
 import SearchAndFilterArea from "@/components/shop/SearchAndFilterArea";
-import { getAllCategory, getSearchProduct } from "@/database/queries";
+import { getAllCategory } from "@/database/queries";
 
-export default async function page({ params: { searchTerm } }) {
-  const searchResult = await getSearchProduct(searchTerm);
+export default async function CategoryPage({ params: { category_name } }) {
   const allCategoryData = await getAllCategory();
 
-  // console.log("search reasult :", searchResult);
   return (
     <>
       <div className="container py-4 flex items-center gap-3">
@@ -18,10 +16,10 @@ export default async function page({ params: { searchTerm } }) {
         <p className="text-gray-600 font-medium">Shop</p>
       </div>
       <SearchAndFilterArea
-        searchResult={searchResult}
+        searchResult={[]}
         allCategoryData={allCategoryData}
-        searchTerm={searchTerm}
-        category_name=""
+        searchTerm=""
+        category_name={category_name}
       />
     </>
   );

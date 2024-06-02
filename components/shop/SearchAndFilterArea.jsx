@@ -8,6 +8,7 @@ export default function SearchAndFilterArea({
   searchResult,
   allCategoryData,
   searchTerm,
+  category_name,
 }) {
   const [showResult, setShowResult] = useState(searchResult);
 
@@ -15,7 +16,7 @@ export default function SearchAndFilterArea({
     minPrice: Number.MIN_SAFE_INTEGER,
     maxPrice: Number.MAX_SAFE_INTEGER,
     size: "",
-    category_name: "",
+    category_name: category_name,
     searchTerm: searchTerm,
   });
   const handelFilter = async () => {
@@ -52,7 +53,7 @@ export default function SearchAndFilterArea({
       </div>
       <div className="col-span-8 bg-gray-300">
         <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
-          Search Reasult
+          Reasult
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12">
           {showResult?.map((pd) => (
